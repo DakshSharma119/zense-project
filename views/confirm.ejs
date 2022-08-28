@@ -1,0 +1,110 @@
+<%- include('partials/header') %>
+<div class="container mt-5 mb-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="text-left logo p-2 px-5">
+          <img src="/img/icon.png" style="height: 150px" />
+        </div>
+        <div class="invoice p-5">
+          <h5>Your order Confirmed!</h5>
+          <span class="font-weight-bold d-block mt-4">Hello <%= name %> </span>
+          <span>You order has been confirmed!</span>
+          <div
+            class="payment border-top mt-3 mb-3 border-bottom table-responsive"
+          >
+            <table class="table table-borderless">
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="py-2">
+                      <span class="d-block text-muted">Order Date</span>
+                      <span><%= date %> </span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="py-2">
+                      <span class="d-block text-muted">Order No</span>
+                      <span>MT12332345</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="py-2">
+                      <span class="d-block text-muted">Payment</span>
+                      <span>Pending</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div class="py-2">
+                      <span class="d-block text-muted">Order Time</span>
+                      <span><%= time %> </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="product border-bottom table-responsive">
+            <table class="table table-borderless">
+              <tbody>
+                <% var price =0 %> <% cartItems.forEach(Item => { %> <%
+                if(Item.quantity != 0) {%>
+                <tr>
+                  <td width="20%">
+                    <img src="/img/<%= Item.name %>.jpg" width="90" />
+                  </td>
+                  <td width="60%">
+                    <span class="font-weight-bold"><%= Item.name %> </span>
+                    <div class="product-qty">
+                      <span class="d-block"
+                        >Quantity:<%= Item.quantity %>
+                      </span>
+                    </div>
+                  </td>
+                  <td width="20%">
+                    <div class="text-right">
+                      <span class="font-weight-bold"
+                        >₹ <%= Item.price*Item.quantity %>
+                      </span>
+                      <% price+=Item.price*Item.quantity %>
+                    </div>
+                  </td>
+                </tr>
+                <% }}) %>
+              </tbody>
+            </table>
+          </div>
+          <div class="row d-flex justify-content-end">
+            <div class="col-md-5">
+              <table class="table table-borderless">
+                <tbody class="totals">
+                  <tr>
+                    <td>
+                      <div class="text-left">
+                        <span class="text-muted">Subtotal</span>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="text-right"><span>₹ <%=price%></span></div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <p class="font-weight-bold mb-0">
+            Thankyou for ordering from us. We will notify you once your order is
+            ready.
+          </p>
+          <span>CFS</span>
+        </div>
+        <div class="d-flex justify-content-between footer p-3">
+          <span>Need Help? visit our <a href="/about" style="color: gray;"> help center</a></span>
+          <a class="btn btn-secondary btn-lg" href="/delCart" role="button">Order Again</a>  
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

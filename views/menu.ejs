@@ -1,0 +1,67 @@
+<%- include('partials/header') %>
+<div class="container py-5">
+  <div class="row text-center text-white mb-5">
+    <div class="col-lg-7 mx-auto">
+      <h1 class="display-4">Food Menu</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 mx-auto">
+      <!-- List group-->
+      <ul class="list-group shadow">
+        <!-- list group item-->
+        <% newListItems.forEach(Item => { %>
+        <form action="/cart" method="post">
+          <li class="list-group-item">
+            <!-- Custom content-->
+            <div
+              class="media align-items-lg-center flex-column flex-lg-row p-3"
+            >
+              <div class="media-body order-2 order-lg-1">
+                <h5 class="mt-0 font-weight-bold mb-2"><%= Item.name %></h5>
+                <p class="font-italic text-muted mb-0 small">
+                  <%= Item.description %>
+                </p>
+                <div
+                  class="d-flex align-items-center justify-content-between mt-1"
+                >
+                  <h6 class="font-weight-bold my-2">₹<%= Item.price %></h6>
+                </div>
+              </div>
+              <img
+                src="/img/<%= Item.name %>.jpg"
+                alt="Generic placeholder image"
+                width="200"
+                class="ml-lg-5 order-1 order-lg-2"
+              />
+              <div class="col-xs-2 quantity" >
+                  <input
+                  class="form-control mb-3"
+                  type="number"
+                  min="0"
+                  name="quantity"
+                  <% let obj= cart.products.find(o => o.name === Item.name) %>
+                  value="<%= obj.quantity %>"
+                  />
+                </div>
+                <input type="hidden" name="price" value="<%= Item.price %>"></input>
+                <button type="submit"  name="item" value="<%= Item.name %>">+</button>
+            </div>
+          </li>
+        </form>
+          <% }) %>
+        </ul>
+        <div class="row bg-dark">
+          <div class="col-lg-6">
+            <a class="btn btn-secondary btn-lg" href="/viewCart" role="button">View Cart</a>   
+          </div>
+          <div class="col-lg-6">
+            <a class="btn btn-secondary btn-lg" href="/final" role="button">Proceed</a>   
+          </div>
+        </div>
+     </div>
+  </div>
+</div>
+
+
+<%- include('partials/footer') %>

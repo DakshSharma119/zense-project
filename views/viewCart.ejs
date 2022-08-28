@@ -1,0 +1,65 @@
+<%- include('partials/header') %>
+<div class="row text-center text-white mb-5">
+    <div class="col-lg-7 mx-auto">
+      <h1 class="display-4">Cart Items</h1>
+    </div>
+  </div>
+<div class="row">
+    <div class="col-lg-8 mx-auto">
+      <!-- List group-->
+      <div class="product border-bottom table-responsive table1">
+        <table class="table table-borderless table1">
+          <tbody>
+            <% var price =0 %> 
+            <% cartItems.forEach(Item => { %>
+                <% if(Item.quantity != 0) {%> 
+            <tr>
+              <td width="20%">
+                <img src="/img/<%= Item.name %>.jpg" width="90" />
+              </td>
+              <td width="60%">
+                <span class="font-weight-bold"><%= Item.name %> </span>
+                <div class="product-qty">
+                  <span class="d-block">Quantity:<%= Item.quantity %> </span>
+                </div>
+              </td>
+              <td width="20%">
+                <div class="text-right">
+                  <span class="font-weight-bold">₹ <%= Item.price*Item.quantity %> </span>
+                  <% price+=Item.price*Item.quantity %> 
+                </div>
+              </td>
+            </tr>
+            <% }}) %> 
+          </tbody>
+        </table>
+      </div>
+      <div class="product border-bottom table-responsive table1 d-flex">
+        <div class="col-md-6">
+          <a class="btn btn-secondary btn-lg" style="margin-top: 8rem;" href="/menu" role="button">Back to menu</a>
+        </div>
+        
+        <div class="col-md-6">
+          <table class="table table-borderless">
+            <tbody class="totals">
+              <tr>
+                <td>
+                  <div class="text-left">
+                    <span class="text-muted">Subtotal</span>
+                  </div>
+                </td>
+                <td>
+                  <div class="text-right"><span>₹ <%=price%></span></div>
+                </td>
+              </tr>
+             
+            </tbody>
+          </table>
+          <a class="btn btn-secondary btn-lg" style="margin-left: 27rem;" href="/final" role="button">Proceed</a>
+        </div>
+      </div>
+     </div>
+  </div>
+
+
+<%- include('partials/footer') %>
