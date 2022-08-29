@@ -50,11 +50,10 @@ const orderSchema = new mongoose.Schema({
 const itemsSchema = {
   name: String,
   description: String,
-  price: Number,
-  
+  price: Number, 
 };
 
-// --------------------------------
+// -------------------------------
 
 const CartSchema = new mongoose.Schema(
   {
